@@ -10,19 +10,23 @@ var logger = require('./lib/commons/logger');
 var app = require('./lib/application');
 
 var database = require('./lib/commons/database');
-database.connect(function(err) {
-console.log(err);
+database.connect(function(err, con) {
   if (err) {
     logger.error('Shutdown the application because an error ocurred ' +
     'when connecting to database');
 
     process.exit(1);
   }
+  // con.query('SELECT 1',function(err, rows) {
+  //   console.log(err, rows);
+  // });
 });
 
 var shutdown = function() {
   logger.warn('Server receive signal to shutdown.');
-  process.exit(0);
+  database.disconnect(function(){
+    process.exit(0);
+  });
 };
 
 process.on('SIGTERM', shutdown)
@@ -32,8 +36,9 @@ process.on('SIGTERM', shutdown)
     logger.error(er.message);
   })
   .on('exit', function(code) {
-    logger.info('Node process exit with code:', code);
-    //database.close();
+    database.disconnect(function(){
+      logger.info('Node process exit with code:', code);
+    });
   });
 
 var server = app.listen(config.get('server:port'), function(err) {
