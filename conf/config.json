@@ -1,0 +1,45 @@
+{
+  "server": {
+    "port": 3000
+  },
+    "logging": {
+      "console": {
+        "level": "debug",
+        "silent": false,
+        "colorize": true,
+        "timestamp": true,
+        "json": false
+      },
+
+      "file": {
+        "level": "info",
+        "silent": false,
+        "colorize": true,
+        "timestamp": true,
+        "filename": "log/",
+        "maxsize": "100000000",
+        "datePattern": "-yyyy-MM-dd.log",
+        "json": true
+      },
+
+      "exception": {
+        "level": "error",
+        "silent": false,
+        "colorize": true,
+        "timestamp": true,
+        "filename": "log/exception",
+        "maxsize": "100000000",
+        "datePattern": "-yyyy-MM-dd.log",
+        "json": true,
+        "humanReadableUnhandledException": true
+      }
+    },
+
+    "mysql": {
+      "host": "localhost",
+      "user": "root",
+      "password" : "",
+      "database" : "crudnodemysq",
+      "connectionLimit": 5
+    }
+}
