@@ -1,6 +1,6 @@
 {
   "server": {
-    "port": 3000
+    "port": 3001
   },
     "logging": {
       "console": {
@@ -39,7 +39,13 @@
       "host": "localhost",
       "user": "root",
       "password" : "",
-      "database" : "crudnodemysq",
+      "database" : "crudnodemysql",
       "connectionLimit": 5
+    },
+
+    "userProfilesCanAccess":{
+      "super": [],
+      "admin": [],
+      "normal": []
     }
 }

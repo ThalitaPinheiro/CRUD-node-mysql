@@ -1,16 +1,17 @@
 'use strict';
 
-process.title = require('./package.json').name;
-
+var passport = require('passport');
 var config = require('./lib/commons/config');
 
+process.title = require('./package.json').name;
 config.file('conf/config.json');
 
 var logger = require('./lib/commons/logger');
 var app = require('./lib/application');
+app.use(passport.initialize());
 
 var database = require('./lib/commons/database');
-database.connect(function(err, con) {
+database.getConnection(function(err, con) {
   if (err) {
     logger.error('Shutdown the application because an error ocurred ' +
     'when connecting to database');

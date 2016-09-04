@@ -6,9 +6,15 @@
   "homepage": "https://github.com/ThalitaPinheiro/Curriculo",
   "main": "index.js",
   "scripts": {
-    "check": "cd node_modules/jshint/bin/ && jshint --reporter ./node_modules/jshint-stylish/index.js test/* lib/*",
-    "test": "cd node_modules/mocha/bin/  && mocha --recursive",
-    "start": "node index.js"
+    "build": "rm -rf dist && mkdir dist && mkdir dist/CRUD-node-mysql && cp index.js dist/CRUD-node-mysql/index.js && cp -r lib dist/CRUD-node-mysql/lib && cp -r conf dist/CRUD-node-mysql/conf && cp package.json dist/CRUD-node-mysql/package.json && cd dist && npm i --production &&  cd CRUD-node-mysql/ && mkdir log",
+    "check": "./node_modules/.bin/eslint ./**.js utils test;",
+    "mocha": "./node_modules/mocha/bin/mocha --recursive",
+    "start": "node index.js",
+    "debug": "./node_modules/.bin/mocha --recursive --debug-brk",
+    "coverage": "istanbul cover --print both _mocha -- -R spec --recursive",
+    "pretest": "npm run check",
+    "test": "export NODE_ENV=test && npm run coverage",
+    "posttest": "./node_modules/.bin/istanbul check-coverage --statements 60 --branches 60 --functions 60"
   },
   "dependencies": {
     "async": "~1.5.x",
@@ -18,6 +24,8 @@
     "morgan": "~1.7.x",
     "mysql": "^2.11.1",
     "nconf": "~0.8.x",
+    "passport": "^0.3.2",
+    "passport-http": "^0.3.0",
     "request": "~2.69.x",
     "tv4": "~1.2.x",
     "winston": "~2.2.x",
