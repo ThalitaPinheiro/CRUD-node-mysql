@@ -17,7 +17,7 @@
     "posttest": "./node_modules/.bin/istanbul check-coverage --statements 60 --branches 60 --functions 60"
   },
   "dependencies": {
-    "async": "~1.5.x",
+    "async": "~3.2.2",
     "body-parser": "~1.15.x",
     "express": "~4.13.x",
     "moment": "^2.12.0",
@@ -26,10 +26,10 @@
     "nconf": "~0.8.x",
     "passport": "^0.3.2",
     "passport-http": "^0.3.0",
-    "request": "~2.69.x",
+    "request": "~2.75.0",
     "tv4": "~1.2.x",
-    "winston": "~2.2.x",
-    "winston-daily-rotate-file": "~1.0.x"
+    "winston": "~3.3.0",
+    "winston-daily-rotate-file": "~1.1.0"
   },
   "devDependencies": {
     "chai": "~3.5.x",
